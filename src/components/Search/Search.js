@@ -11,6 +11,7 @@ const Search = () => {
         name="search"
         id="search"
         placeholder="Search"
+        autocomplete="off"
       />
     </div>
   );

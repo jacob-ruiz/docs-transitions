@@ -46,6 +46,11 @@ body {
   border-right: 1px solid #eff0f2;
 }
 
+.leftColumn.closed {
+  transform: translateX(-240px);
+  border-right: 1px solid white;
+}
+
 .paddingX-12 {
   padding: 0 12px;
 }

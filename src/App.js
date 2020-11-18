@@ -8,7 +8,7 @@ const leftPanelWidths = {
   closed: 84,
 };
 
-const DURATION = '100ms';
+const DURATION = '80ms';
 const CURVE = 'cubic-bezier(0, 0.55, 0.45, 1)'; // easeOutCirc (easings.net)
 
 function Layout() {
@@ -41,10 +41,9 @@ function CenterColumn({ leftPanel }) {
 function LeftColumn({ isOpen, onToggle }) {
   return (
     <div
-      className="leftColumn"
+      className={`leftColumn ${!isOpen && `closed`}`}
       style={{
-        width: isOpen ? leftPanelWidths.open : leftPanelWidths.closed,
-        transition: `width ${DURATION} ${CURVE}`,
+        transition: `transform ${DURATION} ${CURVE}`,
       }}
     >
       <button
@@ -54,61 +53,96 @@ function LeftColumn({ isOpen, onToggle }) {
           position: 'absolute',
           right: -16,
           top: 20,
+          zIndex: 100,
         }}
       >
         <DocsIcon />
       </button>
-      {isOpen && (
-        <div className="leftColumnContent">
-          <div
-            style={{
-              display: 'flex',
-              alignContent: 'center',
-              gridTemplateColumns: 'auto auto',
-              padding: '0 12px',
-              margin: '20px 0 16px 0',
-            }}
-          >
-            <h3 style={{ display: 'inline', marginRight: '8px' }}>Docs</h3>
-            <button className="pillButton blueButton">
-              <NewIcon />
-              New
-            </button>
-          </div>
-          <div
-            style={{
-              marginBottom: '20px',
-            }}
-          >
-            <Search />
-          </div>
-          <div
-            style={{
-              padding: '0 12px',
-            }}
-          >
-            <div
-              className="filterTitle"
-              style={{
-                marginBottom: 10,
-              }}
-            >
-              My Docs
-            </div>
-            <DocListItem
-              title="Title"
-              author="Jacob Ruiz"
-              lastEdited="Just now"
-              isActive
-            />
-            <DocListItem
-              title="Title"
-              author="Jacob Ruiz"
-              lastEdited="Just now"
-            />
-          </div>
+      <button
+        className="roundButton blueButton"
+        style={{
+          position: 'absolute',
+          right: -16,
+          top: 60,
+          zIndex: 100,
+          opacity: isOpen ? 0 : 1,
+          transition: `opacity ${DURATION}`,
+        }}
+      >
+        <NewIcon />
+      </button>
+
+      <div
+        className={`leftColumnContent`}
+        style={{
+          opacity: isOpen ? 1 : 0,
+          transition: `opacity ${DURATION}`,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            gridTemplateColumns: 'auto auto',
+            padding: '0 12px',
+            margin: '20px 0 16px 0',
+            minWidth: 299,
+          }}
+        >
+          <h3 style={{ display: 'inline', marginRight: '8px' }}>Docs</h3>
+          <button className="pillButton blueButton">
+            <NewIcon />
+            New
+          </button>
         </div>
-      )}
+        <div
+          style={{
+            marginBottom: '20px',
+          }}
+        >
+          <Search />
+        </div>
+        <div
+          style={{
+            padding: '0 12px',
+          }}
+        >
+          <div
+            className="filterTitle"
+            style={{
+              marginBottom: 10,
+            }}
+          >
+            My Docs
+          </div>
+          <DocListItem
+            title="How to Start Creating your Brand ..."
+            author="Jacob Ruiz"
+            lastEdited="Just now"
+            isActive
+          />
+          <DocListItem
+            title="Your brand is more than grammar..."
+            author="Jacob Ruiz"
+            lastEdited="Just now"
+          />
+          <DocListItem
+            title="10 Great Movies at the New York Fe..."
+            author="Jacob Ruiz"
+            lastEdited="Just now"
+          />
+          <DocListItem
+            title="Brand and Values Exploration"
+            author="Jacob Ruiz"
+            lastEdited="Just now"
+          />
+          <DocListItem
+            title="Demo Doc"
+            author="Jacob Ruiz"
+            lastEdited="Just now"
+          />
+        </div>
+      </div>
       <div>{isOpen}</div>
     </div>
   );
