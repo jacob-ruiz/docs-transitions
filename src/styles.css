@@ -9,18 +9,31 @@ html {
   box-sizing: inherit;
 }
 
+h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
 body {
   margin: 0;
 }
 
 .App {
   font-family: 'Poppins', sans-serif;
-  text-align: center;
 }
 
 .centerColumn {
   height: 100vh;
-  background-color: pink;
+  /* background-color: pink; */
 }
 
 .leftColumn {
@@ -29,7 +42,16 @@ body {
   bottom: 0;
   left: 0;
   width: 300px;
-  background-color: lightblue;
+  background-color: white;
+  border-right: 1px solid #eff0f2;
+}
+
+.paddingX-12 {
+  padding: 0 12px;
+}
+
+.leftColumnContent {
+  padding: 0 12px;
 }
 
 .rightColumn {
@@ -38,5 +60,57 @@ body {
   bottom: 0;
   right: 0;
   width: 300px;
-  background-color: lightslategray;
+  background-color: white;
+  border-right: 1px solid #eff0f2;
+}
+
+/* BUTTON */
+
+.roundButton {
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: #eff0f2;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.greyButton {
+  background: #eff0f2;
+  transition: background 80ms;
+}
+.greyButton:hover {
+  background: #d3d6db;
+}
+
+.blueButton {
+  background: #e4e9ff;
+  transition: background 80ms;
+  color: #3c64fa;
+}
+.blueButton:hover {
+  background: #bfcbff;
+}
+
+.pillButton {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+  align-items: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  height: 32px;
+  padding: 0 14px;
+  line-height: 1;
+}
+
+/* OTHER PANEL ELEMENTs */
+.filterTitle {
+  font-weight: 600;
+  font-size: 14px;
 }

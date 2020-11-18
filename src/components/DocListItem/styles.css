@@ -1,0 +1,24 @@
+.docListItem--container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 6px;
+  padding: 8px 8px 8px 32px;
+  border-radius: 4px;
+  color: #5a677c;
+  cursor: pointer;
+  overflow: hidden;
+}
+.docListItem--active {
+  background: #f3f5ff;
+  color: black;
+}
+.docListItem--title {
+  font-weight: 600;
+  font-size: 11px;
+  display: block;
+  line-height: 1;
+}
+.docListItem--subtitle {
+  font-size: 9px;
+  line-height: 1;
+}
