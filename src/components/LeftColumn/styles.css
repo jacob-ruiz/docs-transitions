@@ -81,3 +81,13 @@
   font-weight: 600;
   font-size: 14px;
 }
+
+/* TOOLTIP */
+.tooltip {
+  width: max-content;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  font-family: 'Poppins', sans-serif !important;
+  padding: 6px 10px !important;
+}

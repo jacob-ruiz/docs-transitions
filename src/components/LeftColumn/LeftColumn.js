@@ -4,6 +4,7 @@ import Icons from '../../icons';
 import DocListItem from '../DocListItem/DocListItem';
 import Search from '../Search/Search';
 import { initialList } from './dummyData';
+import ReactTooltip from 'react-tooltip';
 
 const DURATION = '80ms';
 // easeOutCirc (easings.net)
@@ -33,6 +34,7 @@ function LeftColumn({ isOpen, onToggle }) {
       }}
     >
       <button
+        data-tip={isOpen ? 'Hide Docs' : 'Show Docs'}
         className="roundButton greyButton"
         onClick={onToggle}
         style={{
@@ -40,13 +42,57 @@ function LeftColumn({ isOpen, onToggle }) {
           right: -16,
           top: 20,
           zIndex: 100,
+          padding: 0,
+          display: 'grid',
+          alignItems: 'center',
+          alignContent: 'center',
         }}
       >
-        <Icons.Doc />
+        <ReactTooltip
+          className="tooltip"
+          place="right"
+          type="dark"
+          effect="solid"
+          backgroundColor="black"
+          multiline={false}
+        />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'auto auto auto',
+            gap: 2,
+            alignContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <span
+            style={{
+              display: 'grid',
+              alignItems: 'center',
+              opacity: isOpen ? 1 : 0,
+              transition: `opacity ${DURATION}`,
+            }}
+          >
+            <Icons.TriangleLeft />
+          </span>
+          <Icons.Doc />
+          <span
+            style={{
+              display: 'grid',
+              alignItems: 'center',
+              opacity: isOpen ? 0 : 1,
+              transition: `opacity ${DURATION}`,
+            }}
+          >
+            <Icons.TriangleRight />
+          </span>
+        </div>
       </button>
       <button
+        data-tip={'New Doc'}
         className="roundButton blueButton"
         style={{
+          display: isOpen && 'none',
           position: 'absolute',
           right: -16,
           top: 60,

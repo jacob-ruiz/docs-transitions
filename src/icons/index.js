@@ -36,9 +36,45 @@ const NewDoc = () => (
   </svg>
 );
 
+const TriangleRight = () => (
+  <svg
+    width="3"
+    height="6"
+    viewBox="0 0 3 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M0 0L3 3L2.62268e-07 6L0 0Z"
+      fill="black"
+    />
+  </svg>
+);
+
+const TriangleLeft = () => (
+  <svg
+    width="3"
+    height="6"
+    viewBox="0 0 3 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M3 0L1.07284e-07 3L3 6L3 0Z"
+      fill="black"
+    />
+  </svg>
+);
+
 const Icons = {
   Doc,
   NewDoc,
+  TriangleRight,
+  TriangleLeft,
 };
 
 export default Icons;
