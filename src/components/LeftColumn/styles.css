@@ -1,0 +1,93 @@
+.leftColumn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  background-color: white;
+  border-right: 1px solid #eff0f2;
+}
+
+.leftColumn.closed {
+  transform: translateX(-240px);
+  border-right: 1px solid white;
+}
+
+.paddingX-12 {
+  padding: 0 12px;
+}
+
+.leftColumnContent {
+  padding: 0 12px;
+}
+
+.rightColumn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  background-color: white;
+  border-right: 1px solid #eff0f2;
+}
+
+/* BUTTON */
+
+.roundButton {
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: #eff0f2;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.greyButton {
+  background: #eff0f2;
+  transition: background 80ms;
+}
+.greyButton:hover {
+  background: #d3d6db;
+}
+
+.blueButton {
+  background: #e4e9ff;
+  transition: background 80ms;
+  color: #3c64fa;
+}
+.blueButton:hover {
+  background: #bfcbff;
+}
+
+.pillButton {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+  align-items: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  height: 32px;
+  padding: 0 14px;
+  line-height: 1;
+}
+
+/* OTHER PANEL ELEMENTs */
+.filterTitle {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* TOOLTIP */
+.tooltip {
+  width: max-content;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  font-family: 'Poppins', sans-serif !important;
+  padding: 6px 10px !important;
+}
