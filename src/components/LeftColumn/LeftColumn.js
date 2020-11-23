@@ -22,6 +22,7 @@ function LeftColumn({ isOpen, onToggle }) {
       title: 'Untitled Doc',
       author: 'Jacob Ruiz',
       lastEdited: 'Just now',
+      deleted: false,
     });
     setItems(newItems);
     setActiveItem(newItemID);
@@ -151,6 +152,7 @@ function LeftColumn({ isOpen, onToggle }) {
             {items.map((item) => (
               <DocListItem
                 key={item.id}
+                isVisible={item.deleted === false}
                 title={item.title}
                 author={item.author}
                 lastEdited={item.lastEdited}
