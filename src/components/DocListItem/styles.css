@@ -1,3 +1,9 @@
+.docListItem {
+  overflow: hidden;
+  border-radius: 4px;
+  height: 44px;
+}
+
 .docListItem--container {
   display: grid;
   grid-template-columns: 1fr;
@@ -7,6 +13,7 @@
   color: #5a677c;
   cursor: pointer;
   background-color: white;
+  opacity: 1;
 }
 .docListItem--container:hover:not(.docListItem--active) {
   background: #f8f9ff;
@@ -28,4 +35,36 @@
   font-size: 9px;
   line-height: 1;
   white-space: nowrap;
+}
+
+/* transitions */
+.docListItem--container-enter {
+  opacity: 1;
+  height: 0;
+}
+
+.docListItem--container-enter .docListItem--container {
+  opacity: 0.1;
+}
+
+.docListItem--container-enter-active {
+  opacity: 1;
+  transition: 100ms cubic-bezier(0.25, 1, 0.5, 1);
+  height: 44px;
+}
+
+.docListItem--container-enter-active .docListItem--container {
+  opacity: 1;
+  transition: 100ms;
+}
+
+.docListItem--container-exit {
+  opacity: 1;
+  height: 44px;
+}
+
+.docListItem--container-exit-active {
+  opacity: 1;
+  transition: 100ms cubic-bezier(0.25, 1, 0.5, 1);
+  height: 0px;
 }
