@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-const DocListItem = ({ title, author, lastEdited, isActive }) => {
+const DocListItem = ({ title, author, lastEdited, isActive, deleted }) => {
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => {
     console.log('mounted!');
+    if (deleted) {
+      setVisible(false);
+    }
     setVisible(true);
     return () => setVisible(false);
-  }, []);
+  }, [deleted]);
 
   return (
     <TransitionGroup component={null}>

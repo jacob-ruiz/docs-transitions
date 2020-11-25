@@ -10,23 +10,7 @@ const DURATION = '80ms';
 // easeOutCirc (easings.net)
 const CURVE = 'cubic-bezier(0, 0.55, 0.45, 1)';
 
-function LeftColumn({ isOpen, onToggle }) {
-  const [items, setItems] = useState(initialList);
-  const [activeItem, setActiveItem] = useState(1);
-
-  function addItem() {
-    const newItems = [...items];
-    const newItemID = items.length + 1;
-    newItems.unshift({
-      id: items.length + 1,
-      title: 'Untitled Doc',
-      author: 'Jacob Ruiz',
-      lastEdited: 'Just now',
-      deleted: false,
-    });
-    setItems(newItems);
-    setActiveItem(newItemID);
-  }
+function LeftColumn({ isOpen, onToggle, items, activeItem, onAddItem }) {
   return (
     <div
       className={`leftColumn ${!isOpen && `closed`}`}
@@ -123,7 +107,7 @@ function LeftColumn({ isOpen, onToggle }) {
           }}
         >
           <h3 style={{ display: 'inline', marginRight: '8px' }}>Docs</h3>
-          <button className="pillButton blueButton" onClick={addItem}>
+          <button className="pillButton blueButton" onClick={onAddItem}>
             <Icons.NewDoc />
             New
           </button>
@@ -157,6 +141,7 @@ function LeftColumn({ isOpen, onToggle }) {
                 author={item.author}
                 lastEdited={item.lastEdited}
                 isActive={activeItem === item.id}
+                deleted={item.deleted}
               />
             ))}
           </div>
