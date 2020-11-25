@@ -5,12 +5,20 @@ import DocListItem from '../DocListItem/DocListItem';
 import Search from '../Search/Search';
 import { initialList } from './dummyData';
 import ReactTooltip from 'react-tooltip';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const DURATION = '80ms';
 // easeOutCirc (easings.net)
 const CURVE = 'cubic-bezier(0, 0.55, 0.45, 1)';
 
-function LeftColumn({ isOpen, onToggle, items, activeItem, onAddItem }) {
+function LeftColumn({
+  isOpen,
+  onToggle,
+  items,
+  activeItem,
+  onAddItem,
+  setItems,
+}) {
   return (
     <div
       className={`leftColumn ${!isOpen && `closed`}`}
@@ -133,17 +141,17 @@ function LeftColumn({ isOpen, onToggle, items, activeItem, onAddItem }) {
             My Docs
           </div>
           <div>
-            {items.map((item) => (
-              <DocListItem
-                key={item.id}
-                isVisible={item.deleted === false}
-                title={item.title}
-                author={item.author}
-                lastEdited={item.lastEdited}
-                isActive={activeItem === item.id}
-                deleted={item.deleted}
-              />
-            ))}
+            <TransitionGroup>
+              {items.map((item) => (
+                <CSSTransition
+                  key={item.id}
+                  classNames="docListItem--container"
+                  timeout={100}
+                >
+                  <DocListItem item={item} isActive={activeItem === item.id} />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
           </div>
         </div>
       </div>

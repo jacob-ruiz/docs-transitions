@@ -33,5 +33,11 @@ body {
 
 .centerColumn {
   height: 100vh;
+  padding: 24px 40px;
   /* background-color: pink; */
+}
+
+.centerColumn button {
+  border-radius: 4px;
+  padding: 4px;
 }

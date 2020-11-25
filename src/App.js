@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DocListItem from './components/DocListItem/DocListItem';
 import LeftColumn from './components/LeftColumn/LeftColumn';
 import Search from './components/Search/Search';
@@ -59,17 +59,41 @@ function Layout() {
         items={items}
         activeItem={activeItem}
         setActiveItem={setActiveItem}
+        setItems={setItems}
       />
       <CenterColumn
         leftPanel={leftPanel}
         activeItem={activeItem}
+        setActiveItem={setActiveItem}
         onDeleteItem={deleteItem}
+        setItems={setItems}
+        items={items}
       />
     </div>
   );
 }
 
-function CenterColumn({ leftPanel, onDeleteItem, activeItem }) {
+function CenterColumn({
+  leftPanel,
+  onDeleteItem,
+  activeItem,
+  setItems,
+  items,
+  setActiveItem,
+}) {
+  const [itemDeleted, setItemDeleted] = useState(false);
+  useEffect(() => {
+    if (itemDeleted) {
+      setActiveItem(items[0].id);
+      setItemDeleted(false);
+    } else {
+      return;
+    }
+  }, [itemDeleted]);
+
+  const item = items.find((obj) => {
+    return obj.id === activeItem;
+  });
   return (
     <div
       className="centerColumn"
@@ -78,7 +102,25 @@ function CenterColumn({ leftPanel, onDeleteItem, activeItem }) {
         transition: `margin ${DURATION} ${CURVE}`,
       }}
     >
-      <button onClick={() => onDeleteItem(activeItem)}>Delete Doc</button>
+      <h1
+        style={{
+          fontWeight: 600,
+          fontSize: '18px',
+          lineHeight: '27px',
+        }}
+      >
+        Title
+      </h1>
+      {items.length > 1 && (
+        <button
+          onClick={() => {
+            setItems((items) => items.filter((item) => item.id !== activeItem));
+            setItemDeleted(true);
+          }}
+        >
+          Delete Doc
+        </button>
+      )}
     </div>
   );
 }
