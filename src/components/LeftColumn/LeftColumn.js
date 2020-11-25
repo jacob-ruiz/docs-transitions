@@ -5,28 +5,20 @@ import DocListItem from '../DocListItem/DocListItem';
 import Search from '../Search/Search';
 import { initialList } from './dummyData';
 import ReactTooltip from 'react-tooltip';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const DURATION = '80ms';
 // easeOutCirc (easings.net)
 const CURVE = 'cubic-bezier(0, 0.55, 0.45, 1)';
 
-function LeftColumn({ isOpen, onToggle }) {
-  const [items, setItems] = useState(initialList);
-  const [activeItem, setActiveItem] = useState(1);
-
-  function addItem() {
-    const newItems = [...items];
-    const newItemID = items.length + 1;
-    newItems.unshift({
-      id: items.length + 1,
-      title: 'Untitled Doc',
-      author: 'Jacob Ruiz',
-      lastEdited: 'Just now',
-      deleted: false,
-    });
-    setItems(newItems);
-    setActiveItem(newItemID);
-  }
+function LeftColumn({
+  isOpen,
+  onToggle,
+  items,
+  activeItem,
+  onAddItem,
+  setItems,
+}) {
   return (
     <div
       className={`leftColumn ${!isOpen && `closed`}`}
@@ -123,7 +115,7 @@ function LeftColumn({ isOpen, onToggle }) {
           }}
         >
           <h3 style={{ display: 'inline', marginRight: '8px' }}>Docs</h3>
-          <button className="pillButton blueButton" onClick={addItem}>
+          <button className="pillButton blueButton" onClick={onAddItem}>
             <Icons.NewDoc />
             New
           </button>
@@ -149,16 +141,17 @@ function LeftColumn({ isOpen, onToggle }) {
             My Docs
           </div>
           <div>
-            {items.map((item) => (
-              <DocListItem
-                key={item.id}
-                isVisible={item.deleted === false}
-                title={item.title}
-                author={item.author}
-                lastEdited={item.lastEdited}
-                isActive={activeItem === item.id}
-              />
-            ))}
+            <TransitionGroup>
+              {items.map((item) => (
+                <CSSTransition
+                  key={item.id}
+                  classNames="docListItem--container"
+                  timeout={100}
+                >
+                  <DocListItem item={item} isActive={activeItem === item.id} />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
           </div>
         </div>
       </div>
